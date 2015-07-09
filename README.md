@@ -5,6 +5,7 @@ Myxy is an API wrapper written in Ruby for the great Calendar42 app.
 
 ## Calendar42
 *From docs.calendar42.com*
+
 Calendar42 is a planning ecosystem that distributes, enriches and profiles time related information. It communicates in real-time with end-users through our browser- & native apps, as well as our our other communication channels. We offer SMS text (not everyone one has a smartphone), transactional mail (nothing wrong with good old fashioned mailboxes) & native push notifications including custom templates & notification masks.
 
 ## Installation
@@ -24,6 +25,24 @@ Or install it yourself as:
     $ gem install myxy
 
 ## Usage
+
+First you'll need to implement an authentication part. You can use the built in authenticaton method and enter your credentials in environment variables but if you're gonna develop an app that let's other users login then you should build an HTML page where users can enter credentials and login to their Calendar42 account. Then you'll only have to set the `Myxy.config.auth_token`.
+
+### Resources in this Gem
+
+#### Events
+
+#### Calendars
+
+#### Location
+
+### Resources in the future
+
+#### Subscriptions for events and calendars
+
+#### Users
+
+#### Positions
 
 No code yet =)
 

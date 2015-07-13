@@ -17,6 +17,18 @@ module Myxy
     def data
       response.data
     end
+
+    def first
+      "Myxy::#{resource}".constantize.new(data[0])
+    end
+
+    def all
+      results = []
+      data.each do |item|
+        results << "Myxy::#{resource}".constantize.new(item)
+      end
+      results
+    end
   end
 
   class ErrorResponse < Response

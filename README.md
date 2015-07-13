@@ -26,11 +26,28 @@ Or install it yourself as:
 
 ## Usage
 
-First you'll need to implement an authentication part. You can use the built in authenticaton method and enter your credentials in environment variables but if you're gonna develop an app that let's other users login then you should build an HTML page where users can enter credentials and login to their Calendar42 account. Then you'll only have to set the `Myxy.config.auth_token`.
+First you'll need to implement an authentication part. You can use the built in authenticaton method and enter your credentials in environment variables but if you're gonna develop an app that let's other users login then you should build an HTML page where users can enter credentials and login to their Calendar42 account. Then you'll only have to set the `Myxy.config.api_token`.
 
 ### Resources in this Gem
 
 #### Events
+
+e.g.
+
+```ruby
+Myxy::Event.all
+```
+Will return all events.
+
+```ruby
+Myxy::Event.where(type: "todo")
+```
+Will return all events of the type todo.
+
+```ruby
+Myxy::Event.find_by(id: 1)
+```
+Will return the event with id 1.
 
 #### Calendars
 

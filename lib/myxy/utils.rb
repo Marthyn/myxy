@@ -13,6 +13,7 @@ module Myxy
     end
 
     def self.collection_path(class_name)
+      puts class_name
       (Utils.pluralize Utils.demodulize class_name).downcase
     end
 

@@ -48,7 +48,7 @@ module Myxy
     # Reset all configuration options to defaults
     def reset
       self.adapter            = DEFAULT_ADAPTER
-      self.api_token          = nil
+      self.api_token          = "b6aea14440c192dfae44ea7a154368e16f6457e3"
       self.connection_options = nil
       self.base_url           = DEFAULT_BASE_URL
       self.version            = DEFAULT_VERSION

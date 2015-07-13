@@ -1,3 +1,4 @@
+require 'JSON'
 module Myxy
   class Response
     attr_accessor :status_code, :body, :response
@@ -11,23 +12,23 @@ module Myxy
     end
 
     def meta
-      response.meta
+      parsed_body["meta_data"]
+    end
+
+    def parsed_body
+      @parsed_body ||= JSON.parse(response.body)
     end
 
     def data
-      response.data
+      parsed_body["data"]
     end
 
     def first
-      "Myxy::#{resource}".constantize.new(data[0])
+      data[0]
     end
 
     def all
-      results = []
-      data.each do |item|
-        results << "Myxy::#{resource}".constantize.new(item)
-      end
-      results
+      data
     end
   end
 

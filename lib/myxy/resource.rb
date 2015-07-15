@@ -10,9 +10,13 @@ module Myxy
       @attributes = attributes
     end
 
+    def base_path
+      Utils.collection_path self.class.name
+    end
+
     def save
       if self.id
-        uri = URI.join(base_path, id)
+        uri = "#{base_path}/#{id}/"
         Myxy.put(uri.to_s, attributes)
       else
         Myxy.post(base_path, attributes)
@@ -20,12 +24,12 @@ module Myxy
     end
 
     module ClassMethods
-      def klass_name
-        self.new.class.name
+      def base_path
+        self.new.base_path
       end
 
-      def base_path
-        Utils.collection_path klass_name
+      def klass_name
+        self.new.class.name
       end
 
       def where(arguments = {})
@@ -58,15 +62,15 @@ module Myxy
       if /^(\w+)=$/ =~ method
         set_attribute($1, args[0])
       else
-        nil unless @attributes[method.to_sym]
+        nil unless @attributes[method.to_s]
       end
-      @attributes[method.to_sym]
+      @attributes[method.to_s]
     end
 
     private
 
     def set_attribute(attribute, value)
-      @attributes[attribute.to_sym] = value
+      @attributes[attribute.to_s] = value
     end
   end
 end

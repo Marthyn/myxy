@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Marthyn/myxy.svg?branch=master)](https://travis-ci.org/Marthyn/myxy)
+[![Code Climate](https://codeclimate.com/github/Marthyn/myxy/badges/gpa.svg)](https://codeclimate.com/github/Marthyn/myxy)
 # Myxy
 *Short for Myxomatosis, one of my favourite Radiohead songs*
 

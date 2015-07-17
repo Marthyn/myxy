@@ -5,7 +5,7 @@ describe Myxy do
     expect(Myxy::VERSION).not_to be nil
   end
 
-  it 'does something useful' do
-    expect(false).to eq(true)
+  it 'responds to config' do
+    expect(Myxy.response_format).to eq(:json)
   end
 end

@@ -70,8 +70,6 @@ module Myxy
       @attributes[method.to_sym]
     end
 
-    private
-
     def set_attribute(attribute, value)
       @attributes[attribute.to_sym] = value
     end

@@ -1,3 +1,5 @@
+require File.expand_path('../log', __FILE__)
+
 module Myxy
   class Classifier
     def self.parse(data, klass)
@@ -18,6 +20,9 @@ module Myxy
 
     def self.create_object(resource, klass)
       Module.const_get(klass).new(resource)
+    rescue NameError => e
+      Log.info("Unkown resource found, #{e.message}")
+      false
     end
   end
 end

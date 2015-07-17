@@ -9,11 +9,10 @@ describe Myxy::Classifier do
     expect(object.id).to eq(123)
   end
 
-  # it 'doesn\'t burn with an unkown class name' do
-  #   klass_name = 'klass_thats_not_defined'
-  #   data = { id: 123, name: 'pieter' }
-  #   object = Myxy::Classifier.parse(data, klass_name)
-  #   expect(object).to be_a(Myxy::KlassThatsNotDefined)
-  #   expect(object.id).to eq(123)
-  # end
+  it 'doesn\'t crash and burn with an unkown class name' do
+    klass_name = 'klass_thats_not_defined'
+    data = { id: 123, name: 'pieter' }
+    object = Myxy::Classifier.parse(data, klass_name)
+    expect(object).to eq(false)
+  end
 end

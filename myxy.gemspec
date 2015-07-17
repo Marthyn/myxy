@@ -36,4 +36,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "mutant"
+  spec.add_development_dependency "guard-rspec"
+  spec.add_development_dependency "webmock"
+  spec.add_development_dependency "guard-rubocop"
+  spec.add_development_dependency "simplecov-rcov"
 end

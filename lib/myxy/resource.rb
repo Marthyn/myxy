@@ -32,23 +32,26 @@ module Myxy
         self.new.class.name
       end
 
-      def where(arguments = {})
+      def find(arguments)
         uri = URI(base_path)
         uri.query = URI.encode_www_form(arguments)
-        results = Myxy.get("#{uri.to_s}/").all
-        Classifier.parse(results, klass_name)
+        results = Myxy.get("#{uri.to_s}/")
+      end
+
+      def where(arguments = {})
+        find(arguments).all
       end
 
       def find_by(arguments = {})
-        uri = URI(base_path)
-        uri.query = URI.encode_www_form(arguments)
-        result = Myxy.get("#{uri.to_s}/").first
-        Classifier.parse(result, klass_name)
+        parse(find(arguments).first)
+      end
+
+      def parse(data)
+        Classifier.parse(data, klass_name)
       end
 
       def all
-        results = Myxy.get("#{base_path}/").all
-        Classifier.parse(results, klass_name)
+        parse(Myxy.get("#{base_path}/").all)
       end
     end
 

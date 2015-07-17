@@ -1,4 +1,4 @@
-require 'JSON'
+require 'json'
 module Myxy
   class Response
     attr_accessor :status_code, :body, :response

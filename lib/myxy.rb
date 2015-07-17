@@ -1,10 +1,12 @@
-require "myxy/version"
-require "myxy/client"
-require "myxy/config"
-require "myxy/response"
-require "myxy/utils"
-require "myxy/resource"
-require "myxy/resources/event"
+require 'myxy/version'
+require 'myxy/client'
+require 'myxy/config'
+require 'myxy/response'
+require 'myxy/utils'
+require 'myxy/resource'
+require 'myxy/resources/event'
+require 'dotenv'
+Dotenv.load
 
 module Myxy
   extend Config

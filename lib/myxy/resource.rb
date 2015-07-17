@@ -1,13 +1,13 @@
 require 'uri'
-require File.expand_path("../utils", __FILE__)
-require File.expand_path("../classifier", __FILE__)
+require File.expand_path('../utils', __FILE__)
+require File.expand_path('../classifier', __FILE__)
 
 module Myxy
   module Resource
     attr_accessor :attributes
 
     def initialize(attributes = {})
-      @attributes = attributes
+      @attributes = Utils.normalize_attributes(attributes)
     end
 
     def base_path
@@ -15,7 +15,7 @@ module Myxy
     end
 
     def save
-      if self.id
+      if id
         uri = "#{base_path}/#{id}/"
         Myxy.put(uri.to_s, attributes)
       else
@@ -25,17 +25,17 @@ module Myxy
 
     module ClassMethods
       def base_path
-        self.new.base_path
+        new.base_path
       end
 
       def klass_name
-        self.new.class.name
+        new.class.name
       end
 
       def find(arguments)
         uri = URI(base_path)
         uri.query = URI.encode_www_form(arguments)
-        results = Myxy.get("#{uri.to_s}/")
+        Myxy.get("#{uri}/")
       end
 
       def where(arguments = {})
@@ -65,15 +65,15 @@ module Myxy
       if /^(\w+)=$/ =~ method
         set_attribute($1, args[0])
       else
-        nil unless @attributes[method.to_s]
+        nil unless @attributes[method.to_sym]
       end
-      @attributes[method.to_s]
+      @attributes[method.to_sym]
     end
 
     private
 
     def set_attribute(attribute, value)
-      @attributes[attribute.to_s] = value
+      @attributes[attribute.to_sym] = value
     end
   end
 end

@@ -1,7 +1,7 @@
-require "faraday"
-require "uri"
-require File.expand_path("../request", __FILE__)
-require File.expand_path("../config", __FILE__)
+require 'faraday'
+require 'uri'
+require File.expand_path('../request', __FILE__)
+require File.expand_path('../config', __FILE__)
 
 module Myxy
   class Client

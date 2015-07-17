@@ -4,5 +4,5 @@ Bundler.setup
 require 'myxy' # and any other gems you need
 
 RSpec.configure do |config|
-  # some (optional) config here
+  config.fail_fast = true
 end

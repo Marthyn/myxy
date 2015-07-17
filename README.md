@@ -42,7 +42,7 @@ Myxy::Event.all
 Will return all events.
 
 ```ruby
-Myxy::Event.where(type: "todo")
+Myxy::Event.where(type: 'todo')
 ```
 Will return all events of the type todo.
 
@@ -79,3 +79,20 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## Testing
+
+We use Rspec for normal unit testing. We aim for coverage above 90%. Also the current suite should succeed when you commit something.
+We use Rubocop for style checking, this should also succeed before you commit anything.
+
+We're also experimenting with Mutation testing, which alters your code to test if your specs fail when there's faulty code. This is important when you
+alter a vital part of the code, make sure the mutation percentage is higher than 80%. To run a part of the code with mutant run the follwing
+`mutant --include lib/myxy --require myxy --use rspec Myxy::ClassYoureWorkingOn`
+
+When you're editing code it's advised you run guard, which watches file changes and automatically runs Rspec and Rubocop.
+
+## Me
+
+[I've](http://www.marthyn.nl) created this gem because I like doing it but also because I believe in Calendar42 as a product.
+
+[![forthebadge](http://forthebadge.com/images/badges/built-with-ruby.svg)](http://www.marthyn.nl)

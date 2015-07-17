@@ -12,7 +12,7 @@ module Myxy
     end
 
     def meta
-      parsed_body["meta_data"]
+      parsed_body['meta_data']
     end
 
     def parsed_body
@@ -20,7 +20,7 @@ module Myxy
     end
 
     def data
-      parsed_body["data"]
+      parsed_body['data']
     end
 
     def first

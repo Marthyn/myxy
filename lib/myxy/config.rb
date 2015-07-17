@@ -1,4 +1,4 @@
-require "faraday"
+require 'faraday'
 
 module Myxy
   module Config
@@ -18,10 +18,10 @@ module Myxy
     DEFAULT_ADAPTER = Faraday.default_adapter
 
     # Version V2 is the only valid version at the moment
-    DEFAULT_VERSION = "v2"
+    DEFAULT_VERSION = 'v2'
 
     # Base url is beta now
-    DEFAULT_BASE_URL = "https://beta.calendar42.com/app/django/api/"
+    DEFAULT_BASE_URL = 'https://beta.calendar42.com/app/django/api/'
 
     DEFAULT_FORMAT = :json
 
@@ -48,7 +48,7 @@ module Myxy
     # Reset all configuration options to defaults
     def reset
       self.adapter            = DEFAULT_ADAPTER
-      self.api_token          = "b6aea14440c192dfae44ea7a154368e16f6457e3"
+      self.api_token          = ENV['API_TOKEN']
       self.connection_options = nil
       self.base_url           = DEFAULT_BASE_URL
       self.version            = DEFAULT_VERSION

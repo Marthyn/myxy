@@ -1,7 +1,7 @@
 module Myxy
   module Utils
     def self.demodulize(class_name_in_module)
-      class_name_in_module.to_s.sub(/^.*::/, "")
+      class_name_in_module.to_s.sub(/^.*::/, '')
     end
 
     def self.pluralize(word)
@@ -13,15 +13,22 @@ module Myxy
     end
 
     def self.collection_path(class_name)
-      puts class_name
       (Utils.pluralize Utils.demodulize class_name).downcase
     end
 
     def self.camelize(word, uppercase_first_letter = true)
       if uppercase_first_letter
-        word.to_s.gsub(%r{/\/(.?)/}) { "::" + $1.upcase }.gsub(/(^|_)(.)/) { $2.upcase }
+        word.to_s.gsub(%r{/\/(.?)/}) { '::' + $1.upcase }
+          .gsub(/(^|_)(.)/) { $2.upcase }
       else
         word[0] + Utils.camelize(word)[1..-1]
+      end
+    end
+
+    def self.normalize_attributes(attributes)
+      attributes.inject({}) do |attribute, (k, v)|
+        attribute[k.to_sym] = v
+        attribute
       end
     end
   end

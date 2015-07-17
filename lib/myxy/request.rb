@@ -25,9 +25,9 @@ module Myxy
 
     def build_headers
       headers = {}
-      headers["Content-Type"] = "application/#{response_format}"
-      headers["Accept"] = "application/#{response_format}"
-      headers["Authorization"] = "Token #{api_token}" if api_token
+      headers['Content-Type'] = "application/#{response_format}"
+      headers['Accept'] = "application/#{response_format}"
+      headers['Authorization'] = "Token #{api_token}" if api_token
       headers
     end
 

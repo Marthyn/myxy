@@ -14,7 +14,7 @@ module Myxy
       Utils.collection_path self.class.name
     end
 
-    def update_params
+    def update_params(params)
       params.each do |key, value|
         set_attribute(key, value)
       end
@@ -24,9 +24,9 @@ module Myxy
       update_params(params) if params
       if id
         uri = "#{base_path}/#{id}/"
-        Myxy.put(uri.to_s, attributes)
+        Myxy.put(uri.to_s, params: attributes)
       else
-        Myxy.post(base_path, attributes)
+        Myxy.post(base_path, params: attributes)
       end
     end
 

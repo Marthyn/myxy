@@ -5,10 +5,14 @@ module Myxy
 
     def initialize(response)
       @response = response
+
+      if error?
+        Log.error(error_message)
+      end
     end
 
     def status_code
-      response.status_code
+      response.status
     end
 
     def meta
@@ -21,6 +25,14 @@ module Myxy
 
     def data
       parsed_body['data']
+    end
+
+    def error_message
+      parsed_body['error']['message']
+    end
+
+    def error?
+      [400,500].include? status_code
     end
 
     def first

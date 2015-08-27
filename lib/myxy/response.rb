@@ -7,7 +7,7 @@ module Myxy
 
     def initialize(response)
       @response = response
-      Log.error(error_message) if error?
+      return false && Log.error(error_message) if error?
     end
 
     def status_code

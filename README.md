@@ -33,9 +33,9 @@ Or install it yourself as:
 
 First you'll need to implement the authentication part. You can use the built in authenticaton method and enter your credentials in environment variables but if you're gonna develop an app that let's other users login then you should build an HTML page where users can enter credentials and login to their Calendar42 account. Then you'll only have to set the `Myxy.config.api_token`.
 
-Currently you can set your API token in a .env file.
-
 ### Resources in this Gem
+
+All resources behave like ActiveRecord resources. You can use find, find_by, all, where and save with or without params to update.
 
 #### Events
 
@@ -60,6 +60,16 @@ Will return the event with that title if it exists.
 Myxy::Event.find(1)
 ```
 Will return the event with id 1 if it exists.
+
+```ruby
+Myxy::Event.new({event_type: 'todo'}).save
+```
+Will create a new todo event.
+
+```ruby
+event = Myxy::Event.find(42)
+event.save({title: "The Party"})
+```
 
 ## TODO
 

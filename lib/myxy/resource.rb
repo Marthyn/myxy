@@ -14,7 +14,14 @@ module Myxy
       Utils.collection_path self.class.name
     end
 
-    def save
+    def update_params
+      params.each do |key, value|
+        set_attribute(key, value)
+      end
+    end
+
+    def save(params = nil)
+      update_params(params) if params
       if id
         uri = "#{base_path}/#{id}/"
         Myxy.put(uri.to_s, attributes)

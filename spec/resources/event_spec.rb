@@ -78,12 +78,18 @@ describe Myxy::Event do
     end
 
     it "can find many" do
-
+      stub_request(:get, "https://beta.calendar42.com/app/django/api/v2/events/").to_return(body: find_by_events_json, headers: { content_type: "application/json" })
+      expect(Myxy::Event.all.length).to eq(2)
     end
 
     it "can find by a parameter" do
       stub_request(:get, "https://beta.calendar42.com/app/django/api/v2/events?length=200/").to_return(body: find_by_events_json, headers: { content_type: "application/json" })
       expect(Myxy::Event.find_by(length: 200)).to be_a(Myxy::Event)
+    end
+
+    it "can do a where query" do
+      stub_request(:get, "https://beta.calendar42.com/app/django/api/v2/events?length=200/").to_return(body: find_by_events_json, headers: { content_type: "application/json" })
+      expect(Myxy::Event.where(length: 200).length).to eq 2
     end
   end
 end

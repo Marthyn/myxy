@@ -10,6 +10,7 @@ describe Myxy::Classifier do
   end
 
   it 'doesn\'t crash and burn with an unkown class name' do
+    expect(Myxy::Log).to receive(:info).with("Unkown resource found, wrong constant name klass_thats_not_defined")
     klass_name = 'klass_thats_not_defined'
     data = { id: 123, name: 'pieter' }
     object = Myxy::Classifier.parse(data, klass_name)

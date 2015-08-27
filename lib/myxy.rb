@@ -5,6 +5,7 @@ require 'myxy/response'
 require 'myxy/utils'
 require 'myxy/resource'
 require 'myxy/resources/event'
+require 'myxy/resources/calendar'
 require 'dotenv'
 Dotenv.load
 

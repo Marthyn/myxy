@@ -2,6 +2,7 @@ require 'myxy'
 require 'bundler/setup'
 require 'webmock/rspec'
 require 'simplecov'
+require 'ffaker'
 require 'simplecov-rcov'
 
 Bundler.setup

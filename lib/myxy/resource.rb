@@ -14,12 +14,19 @@ module Myxy
       Utils.collection_path self.class.name
     end
 
-    def save
+    def update_params(params)
+      params.each do |key, value|
+        set_attribute(key, value)
+      end
+    end
+
+    def save(params = nil)
+      update_params(params) if params
       if id
         uri = "#{base_path}/#{id}/"
-        Myxy.put(uri.to_s, attributes)
+        Myxy.put(uri.to_s, params: attributes)
       else
-        Myxy.post(base_path, attributes)
+        Myxy.post(base_path, params: attributes)
       end
     end
 
@@ -32,18 +39,23 @@ module Myxy
         new.class.name
       end
 
-      def find(arguments)
+      def get(arguments)
         uri = URI(base_path)
         uri.query = URI.encode_www_form(arguments)
         Myxy.get("#{uri}/")
       end
 
+      def find(id)
+        uri = URI(base_path)
+        parse(Myxy.get("#{uri}/#{id}/").all).first
+      end
+
       def where(arguments = {})
-        find(arguments).all
+        get(arguments).all
       end
 
       def find_by(arguments = {})
-        parse(find(arguments).first)
+        parse(get(arguments).first)
       end
 
       def parse(data)
@@ -71,7 +83,22 @@ module Myxy
     end
 
     def set_attribute(attribute, value)
-      @attributes[attribute.to_sym] = value
+      @attributes[attribute.to_sym] = value if valid_attribute?(attribute)
+    end
+
+    def valid_attribute?(attribute)
+      valid_attributes.include?(attribute.to_sym)
+    end
+
+    def valid_attributes
+      @valid_attributes ||= mandatory_attributes.inject(other_attributes, :<<)
+    end
+
+    def valid?
+      mandatory_attributes.each do |attribute|
+        return false unless @attributes.key? attribute
+      end
+      true
     end
   end
 end

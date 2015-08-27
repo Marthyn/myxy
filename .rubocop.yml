@@ -13,6 +13,7 @@ AllCops:
     - 'log/**/*'
     - 'spec/**/*'
     - 'config/**/*'
+    - 'demos/**/*'
   RunRailsCops: true
 
 Metrics/AbcSize:

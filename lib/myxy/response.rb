@@ -3,12 +3,15 @@ module Myxy
   class Response
     attr_accessor :status_code, :body, :response
 
+    ERROR_CODES = [400, 500].freeze
+
     def initialize(response)
       @response = response
+      Log.error(error_message) if error?
     end
 
     def status_code
-      response.status_code
+      response.status
     end
 
     def meta
@@ -23,22 +26,20 @@ module Myxy
       parsed_body['data']
     end
 
+    def error_message
+      parsed_body['error']['message']
+    end
+
+    def error?
+      ERROR_CODES.include? status_code
+    end
+
     def first
       data[0]
     end
 
     def all
       data
-    end
-  end
-
-  class ErrorResponse < Response
-    def error_code
-      reponse.error.code
-    end
-
-    def error_message
-      reponse.error.message
     end
   end
 end

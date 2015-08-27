@@ -3,12 +3,11 @@ module Myxy
   class Response
     attr_accessor :status_code, :body, :response
 
+    ERROR_CODES = [400, 500].freeze
+
     def initialize(response)
       @response = response
-
-      if error?
-        Log.error(error_message)
-      end
+      Log.error(error_message) if error?
     end
 
     def status_code
@@ -32,7 +31,7 @@ module Myxy
     end
 
     def error?
-      [400,500].include? status_code
+      ERROR_CODES.include? status_code
     end
 
     def first
@@ -41,16 +40,6 @@ module Myxy
 
     def all
       data
-    end
-  end
-
-  class ErrorResponse < Response
-    def error_code
-      reponse.error.code
-    end
-
-    def error_message
-      reponse.error.message
     end
   end
 end

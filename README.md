@@ -1,9 +1,12 @@
 [![Build Status](https://travis-ci.org/Marthyn/myxy.svg?branch=master)](https://travis-ci.org/Marthyn/myxy)
 [![Code Climate](https://codeclimate.com/github/Marthyn/myxy/badges/gpa.svg)](https://codeclimate.com/github/Marthyn/myxy)
+[![Gem Version](https://badge.fury.io/rb/myxy.svg)](http://badge.fury.io/rb/myxy)
 # Myxy
 *Short for Myxomatosis, one of my favourite Radiohead songs*
 
 Myxy is an API wrapper written in Ruby for the great Calendar42 app.
+
+To try this Gem out in an example app, check this repo out https://github.com/Marthyn/myxy-demo.
 
 ## Calendar42
 *From docs.calendar42.com*
@@ -15,7 +18,7 @@ Calendar42 is a planning ecosystem that distributes, enriches and profiles time 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'myxy'
+gem 'myxy', '~> 0.0.1'
 ```
 
 And then execute:
@@ -28,9 +31,11 @@ Or install it yourself as:
 
 ## Usage
 
-First you'll need to implement an authentication part. You can use the built in authenticaton method and enter your credentials in environment variables but if you're gonna develop an app that let's other users login then you should build an HTML page where users can enter credentials and login to their Calendar42 account. Then you'll only have to set the `Myxy.config.api_token`.
+First you'll need to implement the authentication part. You can use the built in authenticaton method and enter your credentials in environment variables but if you're gonna develop an app that let's other users login then you should build an HTML page where users can enter credentials and login to their Calendar42 account. Then you'll only have to set the `Myxy.config.api_token`.
 
 ### Resources in this Gem
+
+All resources behave like ActiveRecord resources. You can use find, find_by, all, where and save with or without params to update.
 
 #### Events
 
@@ -55,6 +60,16 @@ Will return the event with that title if it exists.
 Myxy::Event.find(1)
 ```
 Will return the event with id 1 if it exists.
+
+```ruby
+Myxy::Event.new({event_type: 'todo'}).save
+```
+Will create a new todo event.
+
+```ruby
+event = Myxy::Event.find(42)
+event.save({title: "The Party"})
+```
 
 ## TODO
 

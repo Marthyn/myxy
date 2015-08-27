@@ -47,23 +47,23 @@ Myxy::Event.where(type: 'todo')
 Will return all events of the type todo.
 
 ```ruby
-Myxy::Event.find_by(id: 1)
+Myxy::Event.find_by(title: 'Dinner at the restaurant at the end of the Universe')
 ```
-Will return the event with id 1.
+Will return the event with that title if it exists.
 
-#### Calendars
+```ruby
+Myxy::Event.find(1)
+```
+Will return the event with id 1 if it exists.
 
-#### Location
+## TODO
 
-### Resources in the future
-
-#### Subscriptions for events and calendars
-
-#### Users
-
-#### Positions
-
-No code yet =)
+  * Demo application
+  * Subscriptions
+  * Locations
+  * Services
+  * Relationships
+  * Actors/Persons
 
 ## Development
 
